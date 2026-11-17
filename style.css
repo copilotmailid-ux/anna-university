@@ -637,6 +637,26 @@ body {
   color: #000000;
 }
 
+/* Result Not Yet Published Box */
+.not-published-box {
+  width: 82%;
+  margin: 18px auto 20px auto;
+  padding: 14px 20px;
+  background-color: #ffffff;
+  border: 1px solid #7ea6a6;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.not-published-msg {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #c00000;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
 /* Legends Link */
 .legends-link-center {
   text-align: center;

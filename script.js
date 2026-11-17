@@ -211,7 +211,7 @@ function playAudioCaptcha(type) {
 /**
  * Handle Student Login:
  * Strictly verifies credentials:
- * Register Number: 621820114003
+ * Register Number: 621820132003
  * Date of Birth: 01-08-2002
  * Captcha: matching characters
  * Only if valid, moves to the Student Portal Results view!
@@ -230,7 +230,7 @@ function handleStudentLogin(event) {
   }
 
   // Strictly validate required student credentials
-  if (regNumber !== "621820114003" || dob !== "01-08-2002") {
+  if (regNumber !== "621820132003" || dob !== "01-08-2002") {
     alert("Invalid Register Number or Date of Birth!");
     return;
   }

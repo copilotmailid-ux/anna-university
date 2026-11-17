@@ -1,0 +1,1237 @@
+/* ==========================================================================
+   ANNA UNIVERSITY - PRE-EXAMINATION MONITORING SYSTEM
+   Pixel-accurate stylesheet recreating the exact portal UI
+   ========================================================================== */
+
+/* Universal Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #464648;
+  background-image: radial-gradient(circle at 50% 50%, #50555a 0%, #3a3d40 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  color: #333333;
+}
+
+/* Main Boxed Layout (968px width) */
+.portal-wrapper {
+  width: 968px;
+  max-width: 968px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ==================== TOP HEADER ==================== */
+.portal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px 6px 18px;
+  background: #ffffff;
+  height: 92px;
+  box-sizing: border-box;
+}
+
+.header-logo-left {
+  width: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.au-logo {
+  width: 90px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+  display: block;
+}
+
+.header-titles {
+  flex: 1;
+  text-align: center;
+  padding: 0 5px;
+}
+
+.univ-name {
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 26.5px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+}
+
+.dept-name {
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.2;
+  margin: 2px 0 1px 0;
+}
+
+.sys-name {
+  font-family: "Times New Roman", Times, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.15;
+}
+
+.header-logo-right {
+  width: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.coe-logo {
+  width: 82px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Teal Horizontal Separator Line */
+.header-teal-line {
+  height: 3.5px;
+  background-color: #57b1b2;
+  width: 100%;
+}
+
+/* ==================== VIEW 1: PRE-LOGIN VIEW ==================== */
+.view-section {
+  width: 100%;
+  flex: 1;
+}
+
+.portal-banner {
+  background-color: #34b4b5;
+  border-radius: 8px;
+  margin: 18px 25px 22px 25px;
+  padding: 48px 20px 45px 20px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.banner-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-bottom: 8px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.banner-subtitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19.5px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/* 3 Columns Portal Content */
+.portal-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 25px 22px 25px;
+  gap: 15px;
+}
+
+/* Common Dark Card Styling (Staff and Student) */
+.login-card {
+  width: 295px;
+  min-height: 312px;
+  background-color: #43484e;
+  border-radius: 9px;
+  padding: 14px 14px 12px 14px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #40c1cb;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+/* Form Table Layout */
+.form-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+.form-label-cell {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  vertical-align: middle;
+  padding-right: 6px;
+  white-space: nowrap;
+}
+
+.sub-label {
+  font-size: 10.5px;
+  color: #e0e0e0;
+  display: block;
+}
+
+.form-input-cell {
+  vertical-align: middle;
+  text-align: right;
+}
+
+.portal-input {
+  width: 124px;
+  height: 22px;
+  background-color: #ffffff;
+  border: 1px solid #7a7a7a;
+  border-radius: 2px;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  color: #000000;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.reg-input-styled {
+  font-family: monospace, Arial, sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.portal-input:focus {
+  border-color: #40c1cb;
+  box-shadow: 0 0 3px rgba(64, 193, 203, 0.6);
+}
+
+.captcha-input-field {
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+/* Play Audio Button inside label */
+.btn-play {
+  background: none;
+  border: none;
+  color: #40c1cb;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 2px;
+  display: inline-block;
+  margin-left: 2px;
+  transition: color 0.15s ease;
+}
+
+.btn-play:hover {
+  color: #6ee7ef;
+  text-decoration: underline;
+}
+
+/* Captcha Canvas Box */
+.captcha-box-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 10px 0;
+}
+
+.captcha-canvas {
+  width: 220px;
+  height: 48px;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid #222222;
+  display: block;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-refresh {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 3px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-refresh:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(45deg);
+}
+
+/* Card Bottom Action Row */
+.card-footer-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.right-align-footer {
+  justify-content: flex-end;
+}
+
+.forgot-link {
+  color: #ffffff;
+  font-size: 12px;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.forgot-link:hover {
+  color: #40c1cb;
+}
+
+.btn-teal-login {
+  background-color: #35b4bd;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 15px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-teal-login:hover {
+  background-color: #2ca0a9;
+}
+
+.btn-teal-login:active {
+  transform: translateY(1px);
+}
+
+/* Announcements Card (Column 3) */
+.announcements-card {
+  width: 275px;
+  height: 480px;
+  border: 1.5px solid #000000;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.announcements-header {
+  background-color: #35b4bd;
+  color: #ffffff;
+  padding: 5px 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  border-bottom: 1px solid #1f8d95;
+}
+
+.header-text {
+  letter-spacing: 0.1px;
+}
+
+.btn-view-all {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.btn-view-all:hover {
+  color: #d1f7fa;
+}
+
+/* Scrolling Ticker Viewport */
+.announcements-scroll-area {
+  flex: 1;
+  overflow-y: hidden;
+  position: relative;
+  padding: 10px 10px;
+}
+
+.ticker-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scrollTicker 30s linear infinite;
+}
+
+.ticker-content.paused {
+  animation-play-state: paused;
+}
+
+@keyframes scrollTicker {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.announcement-row {
+  font-size: 12px;
+  line-height: 1.38;
+}
+
+.text-red {
+  color: #c00000;
+}
+
+.text-blue {
+  color: #0011bb;
+}
+
+.strong-text {
+  font-weight: 700;
+}
+
+.badge-new-img {
+  display: inline-block;
+  vertical-align: middle;
+  height: 18px;
+  width: auto;
+  margin-left: 3px;
+  animation: pulseBadge 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBadge {
+  0% {
+    transform: scale(0.96);
+    filter: brightness(0.95);
+  }
+
+  100% {
+    transform: scale(1.06);
+    filter: brightness(1.15) drop-shadow(0 0 2px rgba(255, 0, 0, 0.4));
+  }
+}
+
+
+/* ==========================================================================
+   VIEW 2: LOGGED-IN STUDENT PORTAL STYLES (Matching Image 1 & 2)
+   ========================================================================== */
+.student-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px 28px 14px 28px;
+}
+
+.welcome-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #222222;
+}
+
+.btn-logout {
+  color: #17838c;
+  font-size: 16px;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.btn-logout:hover {
+  color: #0d5359;
+}
+
+/* Navigation Tabs Row */
+.student-tabs-row {
+  display: flex;
+  gap: 3px;
+  padding-left: 28px;
+  margin-bottom: 0;
+}
+
+.tab-btn {
+  background-color: #1b7776;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: background-color 0.15s ease;
+  outline: none;
+}
+
+.tab-btn:hover {
+  background-color: #135858;
+}
+
+.tab-btn.active {
+  background-color: #125758;
+  box-shadow: inset 0 2px 0 #5cdbd3;
+}
+
+/* Light Cyan Rounded Portal Container (rgb(178, 226, 226)) */
+.student-cyan-panel {
+  background-color: #b2e2e2;
+  border-radius: 0 8px 8px 8px;
+  margin: 0 28px 25px 28px;
+  padding: 30px 40px 35px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  min-height: 480px;
+}
+
+.panel-main-heading {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 23px;
+  color: #28979e;
+  font-weight: 500;
+  text-align: center;
+  margin: 6px 0 22px 0;
+}
+
+/* Profile Details Grid (Image 1) */
+.profile-details-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 650px;
+  margin: 30px 0 35px 15px;
+}
+
+.profile-field-row {
+  display: flex;
+  font-size: 13.5px;
+  align-items: baseline;
+}
+
+.field-label {
+  width: 170px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.field-value {
+  color: #222222;
+  font-weight: 500;
+}
+
+/* Exam Results Tab Styles (Image 2 - ALL PASS!) */
+.results-top-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -15px;
+  margin-bottom: 8px;
+}
+
+.link-print {
+  color: #17838c;
+  font-size: 13px;
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.link-print:hover {
+  color: #0b4e54;
+}
+
+.result-section-block {
+  margin-bottom: 30px;
+}
+
+.result-student-info-box {
+  border: 1px solid #7ea6a6;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 8px 14px;
+  margin: 0 auto 8px auto;
+  width: 82%;
+  font-size: 12px;
+  color: #111111;
+  line-height: 1.6;
+}
+
+.info-lbl {
+  font-weight: 600;
+  min-width: 130px;
+  display: inline-block;
+}
+
+.info-val {
+  font-weight: 500;
+}
+
+/* Anna University Result Table */
+.anna-result-table {
+  width: 82%;
+  margin: 0 auto 12px auto;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  background-color: #ffffff;
+}
+
+.anna-result-table th {
+  background-color: #186e6f;
+  color: #ffffff;
+  font-weight: 700;
+  border: 1px solid #7ea6a6;
+  padding: 5px 8px;
+  text-align: center;
+  font-size: 11.5px;
+}
+
+.anna-result-table td {
+  border: 1px solid #7ea6a6;
+  padding: 4px 8px;
+  text-align: center;
+  color: #000000;
+  font-size: 11px;
+}
+
+.anna-result-table tbody tr:nth-child(even) {
+  background-color: #f7fbfb;
+}
+
+.anna-result-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.res-pass {
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Legends Link */
+.legends-link-center {
+  text-align: center;
+  margin: 18px 0 12px 0;
+}
+
+.link-legends {
+  color: #17838c;
+  font-size: 12px;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link-legends:hover {
+  color: #0d5459;
+}
+
+/* Official Disclaimer in Result Panel */
+.au-results-disclaimer {
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: #3b5052;
+  width: 84%;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+
+/* ==================== FOOTER BAR ==================== */
+.portal-footer {
+  width: 100%;
+  background-color: #35b4bd;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+  color: #000000;
+  font-size: 11px;
+  margin-top: auto;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-link {
+  color: #000000;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.footer-center {
+  flex: 2;
+  text-align: center;
+}
+
+.nic-credits {
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.res-notice {
+  font-size: 10px;
+  font-weight: 400;
+  margin: 2px 0 0 0;
+  color: #2b2b2b;
+}
+
+.footer-right {
+  flex: 1;
+  text-align: right;
+}
+
+.maintained-label {
+  font-size: 10px;
+  font-style: italic;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.maintained-org {
+  font-size: 11px;
+  font-weight: 500;
+  margin: 2px 0 0 0;
+  color: #000000;
+}
+
+
+/* ==================== MODAL OVERLAYS & DIALOGS ==================== */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-backdrop.active {
+  display: flex;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-dialog {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  max-width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.25s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.small-dialog {
+  width: 480px;
+}
+
+.medium-dialog {
+  width: 680px;
+}
+
+.dashboard-dialog {
+  width: 820px;
+}
+
+.modal-header {
+  background: #2a969f;
+  color: #ffffff;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-mini-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-subtitle {
+  font-size: 12px;
+  opacity: 0.9;
+  margin: 2px 0 0 0;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: transform 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.2);
+}
+
+.modal-body {
+  padding: 18px 20px;
+  overflow-y: auto;
+  font-size: 13px;
+  color: #333333;
+}
+
+.modal-footer {
+  background: #f4f5f7;
+  padding: 10px 18px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e1e4e8;
+}
+
+/* Modal Form Elements */
+.modal-description {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: #555555;
+}
+
+.form-group-modal {
+  margin-bottom: 14px;
+}
+
+.form-group-modal label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #222222;
+}
+
+.modal-input {
+  width: 100%;
+  height: 32px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.modal-input:focus {
+  border-color: #35b4bd;
+  box-shadow: 0 0 4px rgba(53, 180, 189, 0.4);
+}
+
+.modal-action-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-primary {
+  background-color: #35b4bd;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #2ca0a9;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Profile Card in Dashboard */
+.profile-card {
+  background: #f8fafb;
+  border: 1px solid #dce4e8;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+
+.profile-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.profile-row:last-child {
+  margin-bottom: 0;
+}
+
+.profile-item {
+  flex: 1;
+  min-width: 200px;
+  font-size: 12.5px;
+}
+
+.profile-item strong {
+  color: #444444;
+}
+
+.badge-success {
+  background-color: #27ae60;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.table-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 8px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.exam-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.exam-table th,
+.exam-table td {
+  border: 1px solid #dce1e6;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.exam-table th {
+  background-color: #f1f4f8;
+  color: #333333;
+  font-weight: 700;
+}
+
+.status-confirmed {
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.service-box {
+  background: #fbfcfd;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-icon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.service-box h5 {
+  font-size: 13.5px;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.service-box p {
+  font-size: 11.5px;
+  color: #4a5568;
+  flex: 1;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.btn-service {
+  background-color: #2b99a2;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.btn-service:hover {
+  background-color: #238088;
+}
+
+.badge-tag {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.red-tag {
+  background: #ffe3e3;
+  color: #c92a2a;
+}
+
+.blue-tag {
+  background: #e7f5ff;
+  color: #1971c2;
+}
+
+.green-tag {
+  background: #ebfbee;
+  color: #2b8a3e;
+}
+
+.link-download {
+  color: #0b7077;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.disclaimer-content h4 {
+  font-size: 13.5px;
+  color: #111;
+  margin: 12px 0 6px 0;
+}
+
+.disclaimer-content p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* ==================== LOADING SCREEN OVERLAY ==================== */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-box {
+  background: #ffffff;
+  padding: 30px 45px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid #c2e2e4;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #daf1f2;
+  border-top: 4px solid #1a8992;
+  border-radius: 50%;
+  animation: spinLoader 0.75s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spinLoader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #177178;
+  margin-bottom: 5px;
+  letter-spacing: 0.2px;
+}
+
+.loading-subtext {
+  font-size: 12px;
+  color: #555555;
+}
+
+/* ==================== PRINT MEDIA STYLES ==================== */
+@media print {
+  body {
+    background: #ffffff;
+    padding: 0;
+  }
+
+  .portal-wrapper {
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .btn-logout,
+  .link-print,
+  .student-tabs-row,
+  .portal-footer,
+  .modal-backdrop {
+    display: none !important;
+  }
+
+  .student-cyan-panel {
+    background: #ffffff !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .anna-result-table th {
+    background-color: #e5e5e5 !important;
+    color: #000000 !important;
+  }
+}
+
+/* ==================== RESPONSIVE TWEAKS ==================== */
+@media screen and (max-width: 980px) {
+  body {
+    padding: 0;
+  }
+
+  .portal-wrapper {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .portal-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-card,
+  .announcements-card {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .announcements-card {
+    height: 380px;
+  }
+
+  .student-tabs-row {
+    flex-wrap: wrap;
+  }
+
+  .result-student-info-box,
+  .anna-result-table,
+  .au-results-disclaimer {
+    width: 100%;
+  }
+}

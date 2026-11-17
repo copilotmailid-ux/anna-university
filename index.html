@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna University, Chennai - Office of the Controller of Examinations</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="assets/anna_university_logo.png" />
+</head>
+<body>
+
+  <!-- Loading Screen Overlay (Appears after login) -->
+  <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="loading-box">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading, please wait...</div>
+      <div class="loading-subtext">Fetching examination records from server...</div>
+    </div>
+  </div>
+
+  <!-- Main Boxed Portal Container (968px width) -->
+  <div class="portal-wrapper">
+
+    <!-- Top Header (Common across all views) -->
+    <header class="portal-header">
+      <div class="header-logo-left">
+        <img src="assets/anna_university_logo.png" alt="Anna University Logo" class="au-logo" />
+      </div>
+
+      <div class="header-titles">
+        <h1 class="univ-name">Anna University, Chennai</h1>
+        <h2 class="dept-name">Office of the Controller of Examinations</h2>
+        <h3 class="sys-name">Pre- Examination Monitoring System</h3>
+      </div>
+
+      <div class="header-logo-right">
+        <img src="assets/anna_coe_logo.png" alt="COE Logo" class="coe-logo" />
+      </div>
+    </header>
+
+    <!-- Teal Horizontal Line -->
+    <div class="header-teal-line"></div>
+
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: PRE-LOGIN PORTAL (Institution & Student Login)           -->
+    <!-- ================================================================= -->
+    <div id="loginView" class="view-section active-view">
+
+      <!-- Teal Welcome Banner -->
+      <section class="portal-banner">
+        <div class="banner-content">
+          <h2 class="banner-title">Welcome to Office of the Controller of Examinations</h2>
+          <h3 class="banner-subtitle">Pre-Examination Monitoring System</h3>
+        </div>
+      </section>
+
+      <!-- Main Content Area: 3 Columns -->
+      <main class="portal-content">
+
+        <!-- Column 1: Institution / Staff login -->
+        <section class="login-card staff-card" aria-label="Institution or Staff Login">
+          <h4 class="card-title">Institution / Staff login</h4>
+          
+          <form id="staffLoginForm" onsubmit="handleStaffLogin(event)" autocomplete="off">
+            <table class="form-table">
+              <tbody>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="staffCode">Institution / Staff Code:</label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="text" id="staffCode" class="portal-input" placeholder="e.g. 6218" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="staffPassword">Password:</label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="password" id="staffPassword" class="portal-input" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="staffCaptchaInput">
+                      Enter the Captcha 
+                      <button type="button" class="btn-play" onclick="playAudioCaptcha('staff')" title="Listen to Captcha">▶ Play</button>
+                    </label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="text" id="staffCaptchaInput" class="portal-input captcha-input-field" maxlength="6" required />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Dark Gold Captcha Display Box -->
+            <div class="captcha-box-container">
+              <canvas id="staffCaptchaCanvas" width="220" height="48" class="captcha-canvas staff-captcha" title="Click to refresh captcha" onclick="refreshCaptcha('staff')"></canvas>
+              <button type="button" class="btn-refresh" onclick="refreshCaptcha('staff')" title="Regenerate Captcha">↻</button>
+            </div>
+
+            <div class="card-footer-flex">
+              <a href="javascript:void(0)" class="forgot-link" onclick="openModal('forgotModal')">Forgot Password</a>
+              <button type="submit" class="btn-teal-login">Login</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Column 2: Student login -->
+        <section class="login-card student-card" aria-label="Student Login">
+          <h4 class="card-title">Student login</h4>
+
+          <form id="studentLoginForm" onsubmit="handleStudentLogin(event)" autocomplete="off">
+            <table class="form-table">
+              <tbody>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="regNumber">Register Number</label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="text" id="regNumber" class="portal-input reg-input-styled" maxlength="12" placeholder="" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="dob">
+                      Date of Birth<br />
+                      <span class="sub-label">[DD-MM-YYYY]</span>
+                    </label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="text" id="dob" class="portal-input" placeholder="DD-MM-YYYY" maxlength="10" required />
+                  </td>
+                </tr>
+                <tr>
+                  <td class="form-label-cell">
+                    <label for="studentCaptchaInput">
+                      Enter the Captcha 
+                      <button type="button" class="btn-play" onclick="playAudioCaptcha('student')" title="Listen to Captcha">▶ Play</button>
+                    </label>
+                  </td>
+                  <td class="form-input-cell">
+                    <input type="text" id="studentCaptchaInput" class="portal-input captcha-input-field" maxlength="6" required />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Pink Speckled Captcha Display Box -->
+            <div class="captcha-box-container">
+              <canvas id="studentCaptchaCanvas" width="220" height="48" class="captcha-canvas student-captcha" title="Click to refresh captcha" onclick="refreshCaptcha('student')"></canvas>
+              <button type="button" class="btn-refresh" onclick="refreshCaptcha('student')" title="Regenerate Captcha">↻</button>
+            </div>
+
+            <div class="card-footer-flex right-align-footer">
+              <button type="submit" class="btn-teal-login">Login</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Column 3: Attention! All Institutions -->
+        <section class="announcements-card" aria-label="Announcements & Circulars">
+          <div class="announcements-header">
+            <span class="header-text">Attention! All Institutions</span>
+            <button type="button" class="btn-view-all" onclick="openModal('announcementsModal')">[ View All ]</button>
+          </div>
+
+          <div class="announcements-scroll-area" id="announcementsScrollArea" onmouseenter="pauseTicker()" onmouseleave="resumeTicker()">
+            <div class="ticker-content" id="tickerContent">
+
+              <!-- Item 1: Red -->
+              <div class="announcement-row text-red">
+                <p>
+                  <span class="strong-text">have already made a request for Change of Exam Centre may contact 044-22357300/044-22357248.</span>
+                  <img src="assets/new_badge.png" class="badge-new-img" alt="New" />
+                </p>
+              </div>
+
+              <!-- Item 2: Blue -->
+              <div class="announcement-row text-blue">
+                <p>
+                  <span class="strong-text">*KIND ATTENTION TO ALL INSTITUTIONS:The Web Portal is now open for downloading Hall Tickets and Attendance Sheets for the November/December 2026 Examinations.This facility is available only for eligible registered candidates of institutions that have paid the examination fees.Institutions are instructed to download the Hall Tickets and Attendance Sheets accordingly</span>
+                  <img src="assets/new_badge.png" class="badge-new-img" alt="New" />
+                </p>
+              </div>
+
+              <!-- Item 3: Red -->
+              <div class="announcement-row text-red">
+                <p>
+                  <span class="strong-text">*Kind Attention to the Institution: - Review Results of April/May 2026 Examinations has been published. Eligible candidates may apply for revaluation through the web portal.</span>
+                  <img src="assets/new_badge.png" class="badge-new-img" alt="New" />
+                </p>
+              </div>
+
+              <!-- Item 4: Blue -->
+              <div class="announcement-row text-blue">
+                <p>
+                  <span class="strong-text">*IMPORTANT: Last date for submission of Internal Assessment - Test III marks for UG / PG Full-time programmes has been extended up to 25-11-2026.</span>
+                  <img src="assets/new_badge.png" class="badge-new-img" alt="New" />
+                </p>
+              </div>
+
+              <!-- Item 5: Red -->
+              <div class="announcement-row text-red">
+                <p>
+                  <span class="strong-text">*Timetable for B.E. / B.Tech / B.Arch / M.E. / M.Tech Semester Examinations (Nov/Dec 2026) is available for download in PDF format.</span>
+                  <img src="assets/new_badge.png" class="badge-new-img" alt="New" />
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: LOGGED-IN STUDENT PORTAL VIEW                            -->
+    <!-- ================================================================= -->
+    <div id="studentPortalView" class="view-section" style="display: none;">
+
+      <!-- Top User Bar: Welcome & Logout -->
+      <div class="student-top-bar">
+        <div class="welcome-label">Welcome <span id="portalStudentName">SURESH KUMAR P</span> !!</div>
+        <div class="logout-link-box">
+          <a href="javascript:void(0)" class="btn-logout" onclick="handleLogout()">Log out</a>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="student-tabs-row" aria-label="Student Navigation Tabs">
+        <button type="button" class="tab-btn active" id="tabBtn-profile" onclick="switchStudentTab('profile')">PROFILE</button>
+        <button type="button" class="tab-btn" id="tabBtn-schedule" onclick="switchStudentTab('schedule')">EXAM SCHEDULE</button>
+        <button type="button" class="tab-btn" id="tabBtn-regpreview" onclick="switchStudentTab('regpreview')">REG.PREVIEW</button>
+        <button type="button" class="tab-btn" id="tabBtn-assessment" onclick="switchStudentTab('assessment')">ASSESSMENT</button>
+        <button type="button" class="tab-btn" id="tabBtn-results" onclick="switchStudentTab('results')">EXAM RESULTS</button>
+        <button type="button" class="tab-btn" id="tabBtn-elective" onclick="switchStudentTab('elective')">ELECTIVE</button>
+        <button type="button" class="tab-btn" id="tabBtn-grievance" onclick="switchStudentTab('grievance')">GRIEVANCE</button>
+      </nav>
+
+      <!-- Light Cyan Rounded Portal Container -->
+      <section class="student-cyan-panel">
+
+        <!-- TAB 1: PROFILE (Matching Image 1) -->
+        <div id="tabContent-profile" class="tab-panel active-panel">
+          <h2 class="panel-main-heading">Student Profile</h2>
+
+          <div class="profile-details-grid">
+            <div class="profile-field-row">
+              <span class="field-label">Register Number</span>
+              <span class="field-value">621820114003</span>
+            </div>
+            <div class="profile-field-row">
+              <span class="field-label">Name</span>
+              <span class="field-value">SURESH KUMAR P</span>
+            </div>
+            <div class="profile-field-row">
+              <span class="field-label">Institution</span>
+              <span class="field-value">6218 - P G P COLLEGE OF ENGINEERING AND TECHNOLOGY</span>
+            </div>
+            <div class="profile-field-row">
+              <span class="field-label">Branch</span>
+              <span class="field-value">114-B.E. Mechanical Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: EXAM RESULTS (Matching Image 2 - ALL SUBJECTS PASS!) -->
+        <div id="tabContent-results" class="tab-panel" style="display: none;">
+
+          <div class="results-top-actions">
+            <a href="javascript:void(0)" class="link-print" onclick="window.print()">Print</a>
+          </div>
+
+
+          <!-- Section 2: Result for April / May Examination, 2026 -->
+          <div class="result-section-block">
+            <h2 class="panel-main-heading">Result for April / May Examination,2026</h2>
+
+            <!-- Student Metadata Box -->
+            <div class="result-student-info-box">
+              <div class="info-row"><span class="info-lbl">Register Number :</span> <span class="info-val">621820114003</span></div>
+              <div class="info-row"><span class="info-lbl">Name :</span> <span class="info-val">SURESH KUMAR P</span></div>
+              <div class="info-row"><span class="info-lbl">Branch :</span> <span class="info-val">B.E. Mechanical Engineering</span></div>
+            </div>
+
+            <!-- Table 2: All PASS -->
+            <table class="anna-result-table">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Semester</th>
+                  <th style="width: 35%;">Subject Code</th>
+                  <th style="width: 20%;">Grade</th>
+                  <th style="width: 20%;">Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>08</td>
+                  <td>MG8591</td>
+                  <td>A+</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>07</td>
+                  <td>ME8791</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>06</td>
+                  <td>ME8651</td>
+                  <td>B+</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>06</td>
+                  <td>ME8692</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>06</td>
+                  <td>ME8693</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>05</td>
+                  <td>ME8501</td>
+                  <td>B+</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>05</td>
+                  <td>ME8593</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>CE8395</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>MA8452</td>
+                  <td>B+</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+                <tr>
+                  <td>04</td>
+                  <td>ME8493</td>
+                  <td>A</td>
+                  <td class="res-pass">PASS</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Legends Link -->
+          <div class="legends-link-center">
+            <a href="javascript:void(0)" class="link-legends" onclick="openModal('legendsModal')">Legends</a>
+          </div>
+
+          <!-- Official Anna University Disclaimer -->
+          <div class="au-results-disclaimer">
+            <p>
+              <strong>Disclaimer:</strong> The result published in this website is provisional only. NIC or O/o CoE, AU are not responsible for any inadvertent error that may have crept in the data / results being published on the Net. This is being published on the Net just for immediate information to the examinees. The Final Mark Sheets issued by the University should only be treated authentic &amp; final in this regard. These Provisional Results will be considered by the University, further, only based on DOTE approval.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- TAB 3: EXAM SCHEDULE -->
+        <div id="tabContent-schedule" class="tab-panel" style="display: none;">
+          <h2 class="panel-main-heading">Examination Schedule - Nov / Dec 2026</h2>
+          <div class="result-student-info-box">
+            <div class="info-row"><span class="info-lbl">Register Number :</span> <span class="info-val">621820114003</span></div>
+            <div class="info-row"><span class="info-lbl">Centre :</span> <span class="info-val">6218 - P G P College of Engineering and Technology</span></div>
+          </div>
+          <table class="anna-result-table">
+            <thead>
+              <tr>
+                <th>Sem</th>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Exam Date</th>
+                <th>Session</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>08</td><td>ME8811</td><td>Project Work</td><td>28-11-2026</td><td>FN</td></tr>
+              <tr><td>08</td><td>MG8591</td><td>Principles of Management</td><td>02-12-2026</td><td>FN</td></tr>
+              <tr><td>08</td><td>IE8693</td><td>Production Planning and Control</td><td>07-12-2026</td><td>FN</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TAB 4: REG.PREVIEW -->
+        <div id="tabContent-regpreview" class="tab-panel" style="display: none;">
+          <h2 class="panel-main-heading">Subject Registration Preview</h2>
+          <div class="result-student-info-box">
+            <div class="info-row"><span class="info-lbl">Degree &amp; Branch :</span> <span class="info-val">B.E. Mechanical Engineering</span></div>
+            <div class="info-row"><span class="info-lbl">Regulation :</span> <span class="info-val">2017 (CBCS)</span></div>
+            <div class="info-row"><span class="info-lbl">Registration Status :</span> <span class="info-val" style="color: #2b8a3e; font-weight: bold;">Confirmed &amp; Approved by Principal</span></div>
+          </div>
+        </div>
+
+        <!-- TAB 5: ASSESSMENT -->
+        <div id="tabContent-assessment" class="tab-panel" style="display: none;">
+          <h2 class="panel-main-heading">Continuous Internal Assessment (CIA) Marks</h2>
+          <table class="anna-result-table">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Test 1 (100)</th>
+                <th>Test 2 (100)</th>
+                <th>Test 3 (100)</th>
+                <th>Attendance %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>MG8591</td><td>Principles of Management</td><td>88</td><td>92</td><td>90</td><td>96%</td></tr>
+              <tr><td>IE8693</td><td>Production Planning &amp; Control</td><td>84</td><td>86</td><td>88</td><td>94%</td></tr>
+              <tr><td>ME8811</td><td>Project Work Phase-II</td><td>95</td><td>96</td><td>95</td><td>98%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TAB 6: ELECTIVE -->
+        <div id="tabContent-elective" class="tab-panel" style="display: none;">
+          <h2 class="panel-main-heading">Chosen Professional Electives</h2>
+          <div class="result-student-info-box">
+            <div class="info-row"><span class="info-lbl">Professional Elective IV :</span> <span class="info-val">IE8693 - Production Planning and Control</span></div>
+            <div class="info-row"><span class="info-lbl">Open Elective II :</span> <span class="info-val">OEI751 - Unmanned Aerial Vehicles</span></div>
+          </div>
+        </div>
+
+        <!-- TAB 7: GRIEVANCE -->
+        <div id="tabContent-grievance" class="tab-panel" style="display: none;">
+          <h2 class="panel-main-heading">Student Examination Grievance</h2>
+          <p style="text-align: center; font-size: 13px; color: #333;">No active grievances logged. All examination records are verified and finalized.</p>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Common Footer Bar -->
+    <footer class="portal-footer">
+      <div class="footer-left">
+        <a href="javascript:void(0)" onclick="openModal('disclaimerModal')" class="footer-link">Disclaimer &amp; Policy</a>
+      </div>
+
+      <div class="footer-center">
+        <p class="nic-credits">Designed and developed by: National Informatics Centre, Chennai.</p>
+        <p class="res-notice">Optimized for 1024 x 768 monitor resolution. Best Viewed with IE8+, Firefox 10+, Chrome 15+</p>
+      </div>
+
+      <div class="footer-right">
+        <p class="maintained-label">Content owned &amp; maintained by</p>
+        <p class="maintained-org">Office of the COE, Anna University, Chennai.</p>
+      </div>
+    </footer>
+
+  </div>
+
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal: Legends (Grading System) -->
+  <div id="legendsModal" class="modal-backdrop" onclick="handleBackdropClick(event, 'legendsModal')">
+    <div class="modal-dialog small-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Letter Grades and Classification - CBCS</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('legendsModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <table class="exam-table">
+          <thead>
+            <tr>
+              <th>Letter Grade</th>
+              <th>Grade Point</th>
+              <th>Meaning</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>O</strong></td><td>10</td><td>Outstanding</td><td><span class="status-confirmed">PASS</span></td></tr>
+            <tr><td><strong>A+</strong></td><td>9</td><td>Excellent</td><td><span class="status-confirmed">PASS</span></td></tr>
+            <tr><td><strong>A</strong></td><td>8</td><td>Very Good</td><td><span class="status-confirmed">PASS</span></td></tr>
+            <tr><td><strong>B+</strong></td><td>7</td><td>Good</td><td><span class="status-confirmed">PASS</span></td></tr>
+            <tr><td><strong>B</strong></td><td>6</td><td>Average</td><td><span class="status-confirmed">PASS</span></td></tr>
+            <tr><td><strong>RA</strong></td><td>0</td><td>Re-appearance</td><td><span style="color:#c00;">RA</span></td></tr>
+            <tr><td><strong>SA</strong></td><td>0</td><td>Shortage of Attendance</td><td><span style="color:#c00;">SA</span></td></tr>
+            <tr><td><strong>W</strong></td><td>0</td><td>Withdrawal</td><td>Withdrawal</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" onclick="closeModal('legendsModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Staff Console -->
+  <div id="staffDashboardModal" class="modal-backdrop" onclick="handleBackdropClick(event, 'staffDashboardModal')">
+    <div class="modal-dialog dashboard-dialog">
+      <div class="modal-header">
+        <div class="modal-header-branding">
+          <img src="assets/anna_university_logo.png" alt="AU" class="modal-mini-logo" />
+          <div>
+            <h3 class="modal-title">Anna University - Office of the Controller of Examinations</h3>
+            <p class="modal-subtitle">Institution / Staff Monitoring Console</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModal('staffDashboardModal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="profile-card">
+          <div class="profile-row">
+            <div class="profile-item"><strong>Institution Code:</strong> <span id="dashStaffCode">6218</span></div>
+            <div class="profile-item"><strong>Institution Name:</strong> <span>P G P COLLEGE OF ENGINEERING AND TECHNOLOGY</span></div>
+            <div class="profile-item"><strong>Zone:</strong> <span>Zone 08 (Namakkal)</span></div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-item"><strong>Authorized User:</strong> <span>Principal / Exam Cell</span></div>
+            <div class="profile-item"><strong>Session:</strong> <span>Nov / Dec 2026</span></div>
+            <div class="profile-item"><strong>Portal Status:</strong> <span class="badge-success">Active &amp; Connected</span></div>
+          </div>
+        </div>
+
+        <h4 class="table-section-title">Pre-Examination Management Services</h4>
+        <div class="services-grid">
+          <div class="service-box">
+            <div class="service-icon">📑</div>
+            <h5>Batch Hall Tickets</h5>
+            <p>Download generated Hall Tickets for all registered students (Branch-wise ZIP / PDF).</p>
+            <button class="btn-service" onclick="alert('Downloading Batch Hall Tickets (ZIP)...')">Download All Hall Tickets</button>
+          </div>
+
+          <div class="service-box">
+            <div class="service-icon">📋</div>
+            <h5>Attendance Sheets</h5>
+            <p>Download Form-A &amp; Form-B Attendance Sheets with student barcodes for exam halls.</p>
+            <button class="btn-service" onclick="alert('Downloading Attendance Sheets (PDF)...')">Download Attendance Sheets</button>
+          </div>
+
+          <div class="service-box">
+            <div class="service-icon">✏️</div>
+            <h5>Internal Marks Entry</h5>
+            <p>Submit and verify Continuous Internal Assessment (CIA) marks for all semesters.</p>
+            <button class="btn-service" onclick="alert('Internal Assessment Entry portal is open.')">Access Mark Entry</button>
+          </div>
+
+          <div class="service-box">
+            <div class="service-icon">🏫</div>
+            <h5>Exam Hall Allocation</h5>
+            <p>Manage Hall Superintendent allocations, room capacities, and invigilator rosters.</p>
+            <button class="btn-service" onclick="alert('Hall Allocation module opened.')">Hall Superintendent Roster</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeModal('staffDashboardModal')">Logout &amp; Return</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Forgot Password -->
+  <div id="forgotModal" class="modal-backdrop" onclick="handleBackdropClick(event, 'forgotModal')">
+    <div class="modal-dialog small-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Institution Password Recovery</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('forgotModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-description">
+          Enter your 4-digit Institution Code and registered Principal/Nodal Officer email address. A password reset link and OTP will be sent to your registered contact.
+        </p>
+        <form onsubmit="handleForgotSubmit(event)">
+          <div class="form-group-modal">
+            <label for="recoveryInstCode">Institution Code:</label>
+            <input type="text" id="recoveryInstCode" class="modal-input" placeholder="e.g. 6218" required />
+          </div>
+          <div class="form-group-modal">
+            <label for="recoveryEmail">Registered Email ID:</label>
+            <input type="email" id="recoveryEmail" class="modal-input" placeholder="principal@pgp.edu" required />
+          </div>
+          <div class="modal-action-row">
+            <button type="button" class="btn-secondary" onclick="closeModal('forgotModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Send OTP / Reset Link</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: View All Announcements -->
+  <div id="announcementsModal" class="modal-backdrop" onclick="handleBackdropClick(event, 'announcementsModal')">
+    <div class="modal-dialog medium-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Circulars &amp; Notifications - Attention! All Institutions</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('announcementsModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="exam-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Notification / Circular Title</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>16-11-2026</td>
+                <td>Regarding Change of Examination Centre requests and helpline contacts: 044-22357300 / 044-22357248</td>
+                <td><span class="badge-tag red-tag">Important</span></td>
+                <td><a href="javascript:void(0)" onclick="alert('Opening official circular PDF...')" class="link-download">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td>15-11-2026</td>
+                <td>Web Portal open for downloading Hall Tickets &amp; Attendance Sheets for Nov/Dec 2026 Examinations</td>
+                <td><span class="badge-tag blue-tag">Institution</span></td>
+                <td><a href="javascript:void(0)" onclick="alert('Opening official circular PDF...')" class="link-download">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td>12-11-2026</td>
+                <td>Review results of April/May 2026 Examinations published - Procedure for Revaluation and Photocopy</td>
+                <td><span class="badge-tag green-tag">Results</span></td>
+                <td><a href="javascript:void(0)" onclick="alert('Opening official circular PDF...')" class="link-download">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td>08-11-2026</td>
+                <td>Extension of last date for payment of Examination Fees without fine up to 30-11-2026</td>
+                <td><span class="badge-tag blue-tag">Students</span></td>
+                <td><a href="javascript:void(0)" onclick="alert('Opening official circular PDF...')" class="link-download">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td>01-11-2026</td>
+                <td>Time table for UG &amp; PG Degree Programmes (Full Time / Part Time) - November/December 2026 Session</td>
+                <td><span class="badge-tag green-tag">Timetable</span></td>
+                <td><a href="javascript:void(0)" onclick="alert('Opening official circular PDF...')" class="link-download">Download PDF</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeModal('announcementsModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Disclaimer & Policy -->
+  <div id="disclaimerModal" class="modal-backdrop" onclick="handleBackdropClick(event, 'disclaimerModal')">
+    <div class="modal-dialog small-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Disclaimer &amp; Privacy Policy</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('disclaimerModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="disclaimer-content">
+          <h4>Terms of Usage &amp; Accuracy of Information</h4>
+          <p>This web portal has been designed and maintained by the National Informatics Centre (NIC), Chennai, for the Office of the Controller of Examinations, Anna University, Chennai.</p>
+          <p>Though all efforts have been made to keep the content on this website accurate and up-to-date, the same should not be construed as a statement of law or used for any legal purposes. In case of any ambiguity or doubts, users are advised to verify/check with the Office of the Controller of Examinations, Anna University, Chennai.</p>
+          <h4>Privacy &amp; Security</h4>
+          <p>Login credentials, student examination data, and marks entered are confidential and protected by secure session tokens. Unauthorized access or tampering with portal records is strictly punishable under the Information Technology Act.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" onclick="closeModal('disclaimerModal')">I Understand</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
